@@ -34,6 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/rightButton"
+        android:onClick="moveLeft"
         android:id="@+id/leftButton"/>
     <CheckBox
         android:layout_width="wrap_content"
@@ -42,6 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/leftButton"
         app:layout_constraintRight_toLeftOf="@+id/greenCheckBox"
+        android:onClick="redCheckBoxClicked"
         android:id="@+id/redCheckBox"/>
     <CheckBox
         android:layout_width="wrap_content"
@@ -50,6 +52,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/redCheckBox"
         app:layout_constraintRight_toLeftOf="@+id/rightButton"
+        android:onClick="greenCheckedBoxClicked"
         android:id="@+id/greenCheckBox"/>
     <Button
         android:layout_width="wrap_content"
@@ -58,6 +61,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/leftButton"
         app:layout_constraintRight_toRightOf="parent"
+        android:onClick="moveRight"
         android:id="@+id/rightButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
