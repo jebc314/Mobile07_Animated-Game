@@ -19,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void moveLeft(View view) {
         // Set horizontal speed to move left
-        drawView.sprite.setdX(-1);
+        drawView.sprite.setdX(-3);
     }
     public void moveRight(View view) {
         // Set horizontal speed to move right
-        drawView.sprite.setdX(1);
+        drawView.sprite.setdX(3);
     }
     public void redCheckBoxClicked(View view) {
         setColor();
