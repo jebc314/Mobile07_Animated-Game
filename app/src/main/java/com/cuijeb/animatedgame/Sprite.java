@@ -25,6 +25,11 @@ public class Sprite extends RectF {
     public Sprite(float left, float top, float right, float bottom) {
         this(left, top, right, bottom, 1, 2, Color.RED);
     }
+
+    public Sprite(RectF r) {
+        super(r);
+    }
+
     public Sprite(float left, float top, float right, float bottom, int dX, int dY, int color) {
         super(left, top, right, bottom);
         this.dX = dX;
