@@ -13,18 +13,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/welcomeText"/>
-    <RatingBar
+    <!--<RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/welcomeText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/ratingBar"/>
+        android:id="@+id/ratingBar"/>-->
     <view
         android:layout_width="match_parent"
         android:layout_height="0dp"
         class="com.cuijeb.animatedgame.DrawView"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
         app:layout_constraintBottom_toTopOf="@+id/leftButton"
         android:id="@+id/drawView"/>
     <Button
