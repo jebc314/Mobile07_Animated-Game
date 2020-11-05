@@ -13,7 +13,7 @@ public class Sprite extends RectF {
     private static final int DOWN = 0, LEFT = 1, RIGHT = 2, UP = 3;
     private int dX, dY, color;
     private Bitmap bitmap;
-    private int currentFrame = 0, iconWidth, iconHeight;
+    private int currentFrame = 0, iconWidth, iconHeight, animationDelay = 20;
 
     // Constructors
     public Sprite() {
@@ -47,6 +47,13 @@ public class Sprite extends RectF {
             offsetTo(left, canvas.getHeight());
         // Moves dX to the right and dY downwards
         offset(dX, dY);
+        // increment to next sprite image after delay
+        if (animationDelay-- < 0) {
+            // Cycles current iamge with boundary protection
+            currentFrame = ++currentFrame % BMP_COLUMNS;
+            // Arbitrary delay before cycling to next image
+            animationDelay = 20;
+        }
     }
     public void draw(Canvas canvas) {
         if (bitmap == null) {
