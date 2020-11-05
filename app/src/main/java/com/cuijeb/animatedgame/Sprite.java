@@ -1,12 +1,19 @@
 package com.cuijeb.animatedgame;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class Sprite extends RectF {
+    private static final int BMP_COLUMNS = 4;
+    private static final int BMP_ROWS = 4;
+    private static final int DOWN = 0, LEFT = 1, RIGHT = 2, UP = 3;
     private int dX, dY, color;
+    private Bitmap bitmap;
+    private int currentFrame = 0, iconWidth, iconHeight;
 
     // Constructors
     public Sprite() {
@@ -42,12 +49,41 @@ public class Sprite extends RectF {
         offset(dX, dY);
     }
     public void draw(Canvas canvas) {
-        Paint paint = new Paint();
-        // Set its color
-        paint.setColor(color);
-        // Draw circle
-        canvas.drawCircle(centerX(), centerY(), width() / 2, paint);
+        if (bitmap == null) {
+            Paint paint = new Paint();
+            // Set its color
+            paint.setColor(color);
+            // Draw circle
+            canvas.drawCircle(centerX(), centerY(), width() / 2, paint);
+        } else {
+            // Calculate width of 1 image
+            iconWidth = bitmap.getWidth() / BMP_COLUMNS;
+            // Calculate height of 1 image
+            iconHeight = bitmap.getHeight() / BMP_ROWS;
+            // Set the x of source rectangle inside of bitmap based on current frame
+            int srcX = currentFrame * iconWidth;
+            // set the y to row of bitmap based on direction
+            int srcY = getAnimatedRow() * iconHeight;
+            // Defines the rectange inside of heroBmp to displayed
+            Rect src = new Rect(srcX, srcY, srcX + iconWidth, srcY + iconHeight);
+            // Draw an image
+            canvas.drawBitmap(bitmap, src, this, null);
+        }
     }
+
+    private int getAnimatedRow() {
+        // If magnitude of x is bigger than the magnitude of y
+        if (Math.abs(dX) > Math.abs(dY)) {
+            // If x is positive return row 2 for right
+            if (Math.abs(dX) == dX) return RIGHT;
+            // If x is negative return row 1 for left
+            else return LEFT;
+        // if y is postive return row 0 for up
+        } else if (Math.abs(dY) == dY) return DOWN;
+        // if y is postive return row 3 for up
+        else return UP;
+    }
+
     // Accessor and modifier methods
     public int getdX() {
         return dX;
@@ -71,6 +107,14 @@ public class Sprite extends RectF {
 
     public void setColor(int color) {
         this.color = color;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public void grow(int i) {

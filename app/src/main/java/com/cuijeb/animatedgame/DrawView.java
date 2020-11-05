@@ -1,6 +1,7 @@
 package com.cuijeb.animatedgame;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -28,6 +29,7 @@ public class DrawView extends View {
         badSprite = generateSprite();
         badSprite.setColor(Color.GREEN);
         sprite.grow(100);
+        sprite.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bluejeans));
     }
 
     @Override
@@ -57,6 +59,15 @@ public class DrawView extends View {
             badSprite = generateSprite();
             badSprite.setColor(Color.GREEN);
             sprite.grow(-5);
+        }
+
+        // if food and bad sprite interacts
+        if (RectF.intersects(foodSprite, badSprite)) {
+            // Shrink food
+            foodSprite.grow((int)(-foodSprite.width()*.1));
+            // recreate the badsprite
+            badSprite = generateSprite();
+            badSprite.setColor(Color.GREEN);
         }
 
         // Sprite draws itself
